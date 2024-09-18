@@ -1,24 +1,21 @@
-<?php
+<?php 
 
-include 'connection.php';
+include 'dbcoon.php';
 
+if (isset($_POST['submit'])) {
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $handle = $_POST['handle'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if all required fields are set and not empty
-    $first_name = isset($_POST['first_name']) && !empty($_POST['first_name']) ? mysqli_real_escape_string($conn, $_POST['first_name']) : null;
-    $last_name = isset($_POST['last_name']) && !empty($_POST['last_name']) ? mysqli_real_escape_string($conn, $_POST['last_name']) : null;
-    $handle = isset($_POST['handle']) && !empty($_POST['handle']) ? mysqli_real_escape_string($conn, $_POST['handle']) : null;
-
-    if ($first_name && $last_name && $handle) {
-        // Proceed with database insertion
-        $sql = "INSERT INTO users (first_name, last_name, handle) VALUES ('$first_name', '$last_name', '$handle')";
-        if (mysqli_query($conn, $sql)) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
+    if($first_name == "" || $last_name == "" || $handle == ""){
+        header("Location: index.php? message=empty");
     } else {
-        echo "All fields are required.";
+        $query = "INSERT INTO `user_handle`(`first_name`, `last_name`, `handle`) VALUES ('$first_name', '$last_name', '$handle')";
+        $result = mysqli_query($connection, $query);
+        if (!$result) {
+            die("Query Failed" . mysqli_error($connection));
+        } else {
+            header("Location: index.php? message=success");
+        }
     }
 }
-header("Location: index.php");

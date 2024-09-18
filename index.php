@@ -50,32 +50,37 @@
                 <th scope="col">Id</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Handle</th> 
+                <th scope="col">Update</th> 
+                <th scope="col">Delete</th> 
                 </tr>
             </thead>
             <tbody>
 
             <?php
-$query = "SELECT * from `user_handle`";
-$result = mysqli_query($connection, $query);
+                $query = "SELECT * from `user_handle`";
+                $result = mysqli_query($connection, $query);
 
-if (!$result) {
-    die("Query Failed" . mysqli_error($connection));
-} else {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $id = $row['id'];
-        $fname = $row['first_name'];
-        $lname = $row['last_name'];
-        $handle = $row['handle'];
-        echo "<tr>
-                        <th scope='row'>$id</th>
-                        <td>$fname</td>
-                        <td>$lname</td>
-                        <td>$handle</td>
-                        </tr>";
-    }
-}
-?>
+                if (!$result) {
+                    die("Query Failed" . mysqli_error($connection));
+                } else {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row['id'];
+                        $fname = $row['first_name'];
+                        $lname = $row['last_name'];
+                        $handle = $row['handle'];
+                        echo "<tr>
+                                        <th scope='row'>$id</th>
+                                        <td>$fname</td>
+                                        <td>$lname</td>
+                                        <td>$handle</td>
+                                        <td class='text-center'><a href='update.php?id=$id' class='btn btn-dark'>Update</a></td>
+                                        <td class='text-center'><a href='delete.php?id=$id' class='btn btn-danger'>Delete</a></td>
+                                       
+                                        </tr>";
+                    }
+                }
+                ?>
             </tbody>
         </table>
     </div>

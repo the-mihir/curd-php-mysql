@@ -45,7 +45,7 @@
 
     <div class="d-flex justify-content-center w-75 mx-auto min-h-100 mt-4">
         <table class="table table-striped table-bordered shadow">
-            <thead>
+            <thead class="table-dark text-center">
                 <tr class="table-secondary">
                 <th scope="col">Id</th>
                 <th scope="col">First Name</th>
@@ -73,8 +73,8 @@
                                         <th scope='row'>$id</th>
                                         <td>$fname</td>
                                         <td>$lname</td>
-                                        <td>$handle</td>
-                                        <td class='text-center'><a href='update.php?id=$id' class='btn btn-dark'>Update</a></td>
+                                        <td> <i class='fa-brands fa-twitter border p-2 rounded-circle'></i> <span>/</span> $handle</td>
+                                        <td class='text-center'><a href='update.php?id=$id' class='btn btn-dark'    >Update</a></td>
                                         <td class='text-center'><a href='delete.php?id=$id' class='btn btn-danger'>Delete</a></td>
                                        
                                         </tr>";
